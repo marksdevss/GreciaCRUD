@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chxse/OneDrive/Documentos/NetBeansProjects/CrudGrecia/src/Views/TemploPrincipal.java</file>
-            <file>file:/C:/Users/chxse/OneDrive/Documentos/NetBeansProjects/CrudGrecia/src/Views/PalacioDeuses.java</file>
+            <file>file:/C:/Users/chxse/OneDrive/Documentos/NetBeansProjects/CrudGrecia/src/ConexaoSQL/GreciaSQL.java</file>
+            <file>file:/C:/Users/chxse/OneDrive/Documentos/NetBeansProjects/CrudGrecia/src/DAOs/LoginDAO.java</file>
+            <file>file:/C:/Users/chxse/OneDrive/Documentos/NetBeansProjects/CrudGrecia/src/DAOs/MonstroDAO.java</file>
         </group>
     </open-files>
 </project-private>

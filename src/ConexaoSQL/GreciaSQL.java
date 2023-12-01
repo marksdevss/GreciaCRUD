@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
 public class GreciaSQL {
-
-    
     
     private static final String DATABASEURL = "jdbc:mysql://localhost:3306/olimpio";
     private static final String USER = "root";
