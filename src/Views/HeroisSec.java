@@ -4,6 +4,11 @@
  */
 package Views;
 
+import DAOs.HeroisDAO;
+import Models.HeroisModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author chxse
@@ -15,6 +20,7 @@ public class HeroisSec extends javax.swing.JFrame {
      */
     public HeroisSec() {
         initComponents();
+        ListarHerois();
     }
 
     /**
@@ -37,8 +43,12 @@ public class HeroisSec extends javax.swing.JFrame {
         txtDescrH = new javax.swing.JTextField();
         txtPoderes = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblHerois = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
+        btnCriarH = new javax.swing.JButton();
+        btnDeletarH = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnSeleciL = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -65,7 +75,7 @@ public class HeroisSec extends javax.swing.JFrame {
 
         jLabel5.setText("Poderes:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHerois.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,77 +86,119 @@ public class HeroisSec extends javax.swing.JFrame {
                 "ID", "Nome", "Descricao", "Poderes"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblHerois);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/pilar02.png"))); // NOI18N
+
+        btnCriarH.setText("Criar");
+        btnCriarH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarHActionPerformed(evt);
+            }
+        });
+
+        btnDeletarH.setText("Deletar");
+        btnDeletarH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarHActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Limpar C");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnSeleciL.setText("Selecionar Linha");
+        btnSeleciL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleciLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(104, 104, 104)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNomeH, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
+                                    .addComponent(jLabel5)
+                                    .addComponent(btnCriarH, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPoderes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDescrH, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPoderes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtDescrH, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnDeletarH)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnSeleciL)
+                                        .addGap(13, 13, 13)
+                                        .addComponent(jButton1))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtID)
+                                    .addComponent(txtNomeH, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
-                        .addGap(28, 28, 28)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                        .addGap(47, 47, 47)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(248, 248, 248))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel1)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel1)
-                        .addGap(36, 36, 36)
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNomeH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(txtDescrH, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtPoderes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel6)))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                            .addComponent(txtNomeH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDescrH, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtPoderes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel6)))
+                .addGap(83, 83, 83)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCriarH)
+                    .addComponent(btnDeletarH)
+                    .addComponent(jButton1)
+                    .addComponent(btnSeleciL))
+                .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
@@ -178,6 +230,11 @@ public class HeroisSec extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Mitos");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -188,7 +245,7 @@ public class HeroisSec extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +272,37 @@ public class HeroisSec extends javax.swing.JFrame {
         dispose();
 
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void btnSeleciLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleciLActionPerformed
+        CarregarColunas();
+    }//GEN-LAST:event_btnSeleciLActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        EsvaziarCampos();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnCriarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarHActionPerformed
+
+        CriacaoHerois();
+        ListarHerois();
+    }//GEN-LAST:event_btnCriarHActionPerformed
+
+    private void btnDeletarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarHActionPerformed
+
+        ListarHerois();
+        DeletarHerois();
+        
+    }//GEN-LAST:event_btnDeletarHActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+
+        BibliotecadeMitos bm  = new BibliotecadeMitos();
+        bm.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -251,7 +339,111 @@ public class HeroisSec extends javax.swing.JFrame {
         });
     }
 
+    private void CriacaoHerois() {
+
+        HeroisModel hm = new HeroisModel();
+
+        String nomee = txtNomeH.getText();
+        String descricaoo = txtDescrH.getText();
+        String poderr = txtPoderes.getText();
+
+        if (nomee.isEmpty() && descricaoo.isEmpty() && poderr.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+
+            hm.setNome_herois(nomee);
+            hm.setDescricao_herois(descricaoo);
+            hm.setPoder(poderr);
+
+            HeroisDAO hdao = new HeroisDAO();
+            hdao.CriarHerois(hm);
+
+            JOptionPane.showMessageDialog(null, "Heroi(na) criado(a) com sucesso!");
+
+            ListarHerois();
+
+        }
+    }
+
+    private void ListarHerois() {
+
+        try {
+
+            HeroisDAO hdao = new HeroisDAO();
+
+            DefaultTableModel tableModel = (DefaultTableModel) tblHerois.getModel();
+
+            tableModel.setNumRows(0);
+
+            for (HeroisModel hm : hdao.MostrarHerois()) {
+
+                tableModel.addRow(new Object[]{
+                    hm.getId_herois(),
+                    hm.getNome_herois(),
+                    hm.getDescricao_herois(),
+                    hm.getPoder(),});
+
+                hdao.MostrarHerois();
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("erro em mostrar Herois: " + e);
+
+        }
+
+    }
+    
+    public void DeletarHerois() {
+
+        try {
+
+            int id = Integer.parseInt(txtID.getText());
+
+            HeroisModel hm = new HeroisModel();
+
+            hm.setId_herois(id);
+
+            HeroisDAO hdao = new HeroisDAO();
+            hdao.DeletarHerois(id);
+
+            JOptionPane.showMessageDialog(null, "Heroi(na) deletado(a) com sucesso!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("O texto em txtID não é um número válido.");
+        }
+
+    }
+
+    private void CarregarColunas() {
+
+        int carregar = tblHerois.getSelectedRow();
+
+        if (carregar < 0) {
+            JOptionPane.showMessageDialog(null, "Ops! voce nao selecionou nenhuma linha");
+        } else {
+            txtID.setText(tblHerois.getModel().getValueAt(carregar, 0).toString());
+            txtNomeH.setText(tblHerois.getModel().getValueAt(carregar, 1).toString());
+            txtDescrH.setText(tblHerois.getModel().getValueAt(carregar, 2).toString());
+            txtPoderes.setText(tblHerois.getModel().getValueAt(carregar, 3).toString());
+        }
+    }
+
+    private void EsvaziarCampos() {
+        txtID.setText("");
+        txtNomeH.setText("");
+        txtDescrH.setText("");
+        txtPoderes.setText("");
+
+        txtNomeH.requestFocus();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCriarH;
+    private javax.swing.JButton btnDeletarH;
+    private javax.swing.JButton btnSeleciL;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,7 +459,7 @@ public class HeroisSec extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblHerois;
     private javax.swing.JTextField txtDescrH;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNomeH;

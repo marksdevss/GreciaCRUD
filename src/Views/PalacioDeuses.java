@@ -244,6 +244,11 @@ public class PalacioDeuses extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Mitos");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -301,6 +306,12 @@ public class PalacioDeuses extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_menuHeroisMouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        BibliotecadeMitos bm  = new BibliotecadeMitos();
+        bm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments

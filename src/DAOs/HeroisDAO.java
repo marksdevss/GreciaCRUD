@@ -76,5 +76,28 @@ public class HeroisDAO {
         return hms;
 
     }
+    
+    
+    
+    public void DeletarHerois  (int id_herois) {
+
+        String sql = "DELETE FROM Herois WHERE id_herois = ?";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = ConexaoSQL.GreciaSQL.ConexaoBD();
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, id_herois);
+
+            preparedStatement.execute();
+
+        } catch (Exception e) {
+            System.out.println("Erro " + e);
+        }
+
+    }
 
 }
