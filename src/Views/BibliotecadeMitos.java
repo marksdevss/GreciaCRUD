@@ -305,8 +305,7 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
 
-        TitansCaverna tc = new TitansCaverna();
-        tc.setVisible(true);
+       
 
         dispose();
 
