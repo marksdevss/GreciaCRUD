@@ -76,4 +76,25 @@ public class TitansDAO {
 
     }
 
+    public void DeletarTitans(int id_titans) {
+
+        String sql = "DELETE FROM Titas WHERE id_titans = ?";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = ConexaoSQL.GreciaSQL.ConexaoBD();
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, id_titans);
+
+            preparedStatement.execute();
+
+        } catch (Exception e) {
+            System.out.println("Erro " + e);
+        }
+
+    }
+
 }

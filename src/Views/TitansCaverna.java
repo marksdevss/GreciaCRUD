@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Views;
+
+import DAOs.TitansDAO;
+import Models.TitansModels;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +16,7 @@ public class TitansCaverna extends javax.swing.JFrame {
      */
     public TitansCaverna() {
         initComponents();
+        ListarTitans();
     }
 
     /**
@@ -28,6 +30,27 @@ public class TitansCaverna extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtNomeT = new javax.swing.JTextField();
+        txtPoderesT = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtIDTitans = new javax.swing.JTextField();
+        btnCriarT = new javax.swing.JButton();
+        btnExcluirT = new javax.swing.JButton();
+        btnLimparCC = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTITANS = new javax.swing.JTable();
+        btnSelecionarC = new javax.swing.JButton();
+        txtDescricao = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
 
         jLabel1.setText("jLabel1");
 
@@ -35,33 +58,259 @@ public class TitansCaverna extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setText("Nome :");
+
+        jLabel3.setText("Descricao:");
+
+        jLabel4.setText("Poderes:");
+
+        jLabel5.setText("ID:");
+
+        txtIDTitans.setEditable(false);
+        txtIDTitans.setEnabled(false);
+
+        btnCriarT.setText("Criar");
+        btnCriarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarTActionPerformed(evt);
+            }
+        });
+
+        btnExcluirT.setText("Excluir");
+        btnExcluirT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirTActionPerformed(evt);
+            }
+        });
+
+        btnLimparCC.setText("Limpar C");
+        btnLimparCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparCCActionPerformed(evt);
+            }
+        });
+
+        tblTITANS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nome", "Descricao", "Poderes"
+            }
+        ));
+        jScrollPane1.setViewportView(tblTITANS);
+
+        btnSelecionarC.setText("Selecionar C");
+        btnSelecionarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(btnCriarT))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(btnExcluirT)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSelecionarC))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPoderesT)))
+                        .addGap(32, 32, 32)
+                        .addComponent(btnLimparCC))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIDTitans, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNomeT, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 432, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtIDTitans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNomeT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtPoderesT, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(105, 105, 105))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCriarT)
+                    .addComponent(btnExcluirT)
+                    .addComponent(btnLimparCC)
+                    .addComponent(btnSelecionarC))
+                .addGap(72, 72, 72))
         );
+
+        jMenu1.setText("Inicio");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Deuses");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Herois");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Monstros");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Titans");
+        jMenu5.setEnabled(false);
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Mitos");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSelecionarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarCActionPerformed
+
+        CarregarColunas();
+    }//GEN-LAST:event_btnSelecionarCActionPerformed
+
+    private void btnLimparCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCCActionPerformed
+
+        EsvaziarCampos();
+
+    }//GEN-LAST:event_btnLimparCCActionPerformed
+
+    private void btnCriarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarTActionPerformed
+
+        CriacaoTitans();
+    }//GEN-LAST:event_btnCriarTActionPerformed
+
+    private void btnExcluirTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirTActionPerformed
+
+        DeletarTitans();
+    }//GEN-LAST:event_btnExcluirTActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+
+        TemploPrincipal tp = new TemploPrincipal();
+        tp.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+
+        PalacioDeuses pd = new PalacioDeuses();
+        pd.setVisible(true);
+
+        dispose();
+
+
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+
+        HeroisSec hs = new HeroisSec();
+        hs.setVisible(true);
+        
+        dispose();
+        
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+
+        
+        
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+
+        BibliotecadeMitos bm = new BibliotecadeMitos();
+        bm.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -98,8 +347,133 @@ public class TitansCaverna extends javax.swing.JFrame {
         });
     }
 
+    private void CriacaoTitans() {
+
+        TitansModels tm = new TitansModels();
+
+        String nomee = txtNomeT.getText();
+        String descricaoo = txtDescricao.getText();
+        String poderees = txtPoderesT.getText();
+
+        if (nomee.isEmpty() && descricaoo.isEmpty() && poderees.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+
+            tm.setNome_titans(nomee);
+            tm.setDescricao_titans(descricaoo);
+            tm.setPoderes_titan(poderees);
+
+            TitansDAO tdao = new TitansDAO();
+            tdao.CriarTiTans(tm);
+
+            JOptionPane.showMessageDialog(null, "Titan criado com sucesso!");
+
+            ListarTitans();
+
+        }
+    }
+
+    private void ListarTitans() {
+
+        try {
+
+            TitansDAO tdao = new TitansDAO();
+
+            DefaultTableModel tableModel = (DefaultTableModel) tblTITANS.getModel();
+
+            tableModel.setNumRows(0);
+
+            for (TitansModels tm : tdao.MostrarTitans()) {
+
+                tableModel.addRow(new Object[]{
+                    tm.getId_titans(),
+                    tm.getNome_titans(),
+                    tm.getDescricao_titans(),
+                    tm.getPoderes_titan()
+                });
+
+                tdao.MostrarTitans();
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("erro em mostrar Titans: " + e);
+
+        }
+
+    }
+
+    public void DeletarTitans() {
+
+        try {
+
+            int id = Integer.parseInt(txtIDTitans.getText());
+
+            TitansModels tm = new TitansModels();
+
+            tm.setId_titans(id);
+
+            TitansDAO tdao = new TitansDAO();
+            tdao.DeletarTitans(id);
+
+            JOptionPane.showMessageDialog(null, "Titan deletado(a) com sucesso!");
+
+            ListarTitans();
+
+        } catch (NumberFormatException e) {
+            System.out.println("O texto em txtID não é um número válido.");
+        }
+
+    }
+
+    private void CarregarColunas() {
+
+        int carregar = tblTITANS.getSelectedRow();
+
+        if (carregar < 0) {
+            JOptionPane.showMessageDialog(null, "Ops! voce nao selecionou nenhuma linha");
+        } else {
+            txtIDTitans.setText(tblTITANS.getModel().getValueAt(carregar, 0).toString());
+            txtNomeT.setText(tblTITANS.getModel().getValueAt(carregar, 1).toString());
+            txtDescricao.setText(tblTITANS.getModel().getValueAt(carregar, 2).toString());
+            txtPoderesT.setText(tblTITANS.getModel().getValueAt(carregar, 3).toString());
+        }
+    }
+
+    private void EsvaziarCampos() {
+
+        txtIDTitans.setText("");
+        txtNomeT.setText("");
+        txtDescricao.setText("");
+        txtPoderesT.setText("");
+
+        txtNomeT.requestFocus();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCriarT;
+    private javax.swing.JButton btnExcluirT;
+    private javax.swing.JButton btnLimparCC;
+    private javax.swing.JButton btnSelecionarC;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblTITANS;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtIDTitans;
+    private javax.swing.JTextField txtNomeT;
+    private javax.swing.JTextField txtPoderesT;
     // End of variables declaration//GEN-END:variables
 }

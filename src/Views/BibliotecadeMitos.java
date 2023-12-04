@@ -89,12 +89,6 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
 
         jLabel8.setText("Herois Envolvidos:");
 
-        txtHeroisEnv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHeroisEnvActionPerformed(evt);
-            }
-        });
-
         tblMitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -242,6 +236,11 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Titans");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Mitos");
@@ -264,10 +263,6 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHeroisEnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHeroisEnvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHeroisEnvActionPerformed
-
     private void btnCriarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarMActionPerformed
 
         CriacaoMitos();
@@ -280,7 +275,7 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
         TemploPrincipal tp = new TemploPrincipal();
 
         tp.setVisible(true);
-        
+
         dispose();
 
     }//GEN-LAST:event_jMenu1MouseClicked
@@ -307,6 +302,15 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
     private void btnLimparCmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCmActionPerformed
         EsvaziarCampos();
     }//GEN-LAST:event_btnLimparCmActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+
+        TitansCaverna tc = new TitansCaverna();
+        tc.setVisible(true);
+
+        dispose();
+
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -416,9 +420,8 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
             txtHeroisEnv.setText(tblMitos.getModel().getValueAt(carregar, 4).toString());
         }
     }
-    
-    
-      private void EsvaziarCampos() {
+
+    private void EsvaziarCampos() {
         txtIDm.setText("");
         txtTituloM.setText("");
         txtDesc.setText("");
@@ -427,7 +430,6 @@ public class BibliotecadeMitos extends javax.swing.JFrame {
 
         txtTituloM.requestFocus();
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
