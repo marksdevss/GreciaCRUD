@@ -30,6 +30,7 @@ public class TemploPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnDeslogar = new javax.swing.JButton();
         barrademenu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -48,12 +49,22 @@ public class TemploPrincipal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
         jLabel2.setText("Seja bem vindo, escolha umas das opcões acima para comecar sua jornada.");
 
+        btnDeslogar.setBackground(new java.awt.Color(255, 204, 153));
+        btnDeslogar.setText("Deslogar");
+        btnDeslogar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeslogarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(btnDeslogar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -64,10 +75,16 @@ public class TemploPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
+                .addContainerGap(205, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(122, 122, 122)
-                .addComponent(jLabel1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDeslogar)
+                        .addGap(17, 17, 17))))
         );
 
         barrademenu.setBackground(new java.awt.Color(255, 255, 204));
@@ -138,6 +155,15 @@ public class TemploPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenu7MouseClicked
 
+    private void btnDeslogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeslogarActionPerformed
+
+        
+        TelaLogin tl = new TelaLogin();
+        tl.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_btnDeslogarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -175,6 +201,7 @@ public class TemploPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barrademenu;
+    private javax.swing.JButton btnDeslogar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
